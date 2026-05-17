@@ -29,7 +29,7 @@
 > [!IMPORTANT]
 > **Platform**
 >
-> Currently Windows only. Riff relies on `kernel32`, `user32`, `ole32`, `mfplat`, `mfreadwrite`, `winmm` and `shlwapi`. Mac support is planned.
+> ![](resources/svg/windows.svg) Currently Windows only. Riff relies on `kernel32`, `user32`, `ole32`, `mfplat`, `mfreadwrite`, `winmm` and `shlwapi`. Mac support is planned.
 
 ## Table of Contents
 
@@ -356,11 +356,11 @@ Riff uses only native Windows DLLs present on every version of Windows since Vis
 
 | Version | Support |
 |---|---|
-| Windows Vista | Supported |
-| Windows 7 | Supported |
-| Windows 8 / 8.1 | Supported |
-| Windows 10 | Supported |
-| Windows 11 | Supported |
+| ![](resources/svg/windows.svg) Windows Vista | Supported |
+| ![](resources/svg/windows.svg) Windows 7 | Supported |
+| ![](resources/svg/windows.svg) Windows 8 / 8.1 | Supported |
+| ![](resources/svg/windows.svg) Windows 10 | Supported |
+| ![](resources/svg/windows.svg) Windows 11 | Supported |
 
 ### Office and VBA Host
 
