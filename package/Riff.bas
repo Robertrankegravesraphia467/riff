@@ -786,8 +786,13 @@ Private Function CoreProcessSourceReader(ByVal pReader As Long, ByVal slot As Lo
         Dim pNullPtr As LongPtr
         Dim tempPtr As LongPtr
         Dim newPtr As LongPtr
-        Dim llTime As LongLong
-        pNullPtr = CLngPtr(0)
+        #If Win64 Then
+            Dim llTime As LongLong
+            pNullPtr = CLngLng(0)
+        #Else
+            Dim llTime As Currency
+            pNullPtr = CLngPtr(0)
+        #End If
     #Else
         Dim pPartialType As Long
         Dim pSample As Long
