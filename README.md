@@ -41,7 +41,6 @@
   - [COM VTable Dispatch](#com-vtable-dispatch)
   - [The DSP Pipeline](#the-dsp-pipeline)
 - [Features](#features)
-- [API Reference](#api-reference)
 - [Examples](#examples)
 - [Compatibility](#compatibility)
 - [Roadmap](#roadmap)
@@ -57,7 +56,9 @@ A single file drop into any VBA project is all it takes. No references need to b
 
 ## Quick Start
 
-Import `Riff.bas` into your VBA project via **File > Import File** in the VBA editor.
+### Import
+
+[Download the latest release](../../releases) and import `Riff.bas` into your VBA project via **File → Import File** in the VBA editor.
 
 ### Play a sound
 
@@ -175,93 +176,6 @@ Riff supports both 32-bit float and 16-bit integer WASAPI output formats and det
 - **32-bit float and 16-bit integer** WASAPI output, auto-detected
 - **x86 and x64** support via `#If VBA7` and `#If Win64` conditional compilation
 - **IDE-safe timer thunk** with `EbMode` liveness check to prevent crashes on VBE reset
-
-## API Reference
-
-### Initialization
-
-| Function | Description |
-|---|---|
-| `RiffOpen()` | Initializes WASAPI, Media Foundation, and the timer thunk. Returns True on success. |
-| `RiffClose()` | Shuts down the engine, stops all voices, and frees all memory. |
-| `RiffIsInitialized` | Returns True if the engine is running. |
-
-### Buffers
-
-| Function | Description |
-|---|---|
-| `RiffLoad(filePath)` | Decodes an audio file from disk into memory. Returns a buffer handle (0-63) or -1. |
-| `RiffLoadFromMemory(audioData())` | Decodes audio from a Byte array. Returns a buffer handle or -1. |
-| `RiffUnload(bufferHandle)` | Frees a buffer and stops any voices using it. |
-| `RiffBufferDurationSec(bufferHandle)` | Returns the duration of a loaded buffer in seconds. |
-
-### Playback
-
-| Function | Description |
-|---|---|
-| `RiffPlay(bufferHandle)` | Plays a buffer on a free voice. Returns a voice handle (0-31) or -1. |
-| `RiffPlayOscillator(waveType, frequencyHz)` | Starts a synthetic oscillator on a free voice. |
-| `RiffPause(voiceHandle)` | Pauses a voice without releasing it. |
-| `RiffResume(voiceHandle)` | Resumes a paused voice. |
-| `RiffStop(voiceHandle)` | Stops and frees a voice immediately. |
-| `RiffStopAll()` | Stops all active voices. |
-| `RiffFadeIn(voiceHandle, durationSec)` | Smoothly fades a voice in over the given duration. |
-| `RiffFadeOut(voiceHandle, durationSec)` | Smoothly fades a voice out and stops it. |
-| `RiffSetLoopRegionSec(voiceHandle, startSec, endSec)` | Constrains playback to loop within a region. |
-
-### Voice Properties
-
-| Property | Description |
-|---|---|
-| `RiffVoiceIsPlaying(v)` | True if the voice is actively playing. |
-| `RiffVoiceIsPaused(v)` | True if the voice is paused. |
-| `RiffVoiceVolume(v)` | Individual volume, 0.0 to 1.0. |
-| `RiffVoicePitch(v)` | Playback speed and pitch. 1.0 is normal, 2.0 is one octave up. |
-| `RiffVoicePan(v)` | Stereo pan. -1.0 left, 0.0 center, 1.0 right. |
-| `RiffVoiceLoop(v)` | Enables or disables looping. |
-| `RiffVoicePositionSec(v)` | Current playback position in seconds. Readable and writable. |
-| `RiffVoiceBus(v)` | Routes the voice to a bus (0 to 7). |
-| `RiffVoiceGetPeak(v, L, R)` | Returns the current peak amplitude for VU metering. |
-
-### Master and Buses
-
-| Property | Description |
-|---|---|
-| `RiffMasterVolume` | Global output volume, 0.0 to 1.0. |
-| `RiffBusVolume(busID)` | Volume for a specific bus, 0.0 to 2.0. |
-| `RiffMasterGetPeak(L, R)` | Returns the master output peak for VU metering. |
-
-### DSP Effects
-
-| Property | Description |
-|---|---|
-| `RiffVoiceLowPass(v)` | Low pass filter. Lower values muffle high frequencies. |
-| `RiffVoiceHighPass(v)` | High pass filter. Removes low frequencies. |
-| `RiffVoiceEqBass(v)` | Low shelf gain. 1.0 is flat. |
-| `RiffVoiceEqMid(v)` | Mid band gain. 1.0 is flat. |
-| `RiffVoiceEqTreble(v)` | High shelf gain. 1.0 is flat. |
-| `RiffVoiceDistortion(v)` | Digital clipping. Values above 1.0 add saturation. |
-| `RiffVoiceBitDepth(v)` | Bit depth reduction. 4 sounds like Game Boy, 8 like early PC. |
-| `RiffVoiceSampleRateReduction(v)` | Downsampling factor. Creates robotic, lo-fi artifacts. |
-| `RiffVoiceStereoWidth(v)` | Stereo field width. Below 1.0 narrows, above 1.0 exaggerates. |
-| `RiffVoiceReverbMix(v)` | Reverb wet amount. |
-| `RiffVoiceReverbTime(v)` | Reverb decay time. Higher values simulate larger spaces. |
-| `RiffVoiceDelayTime(v)` | Echo interval in seconds. |
-| `RiffVoiceDelayFeedback(v)` | Echo decay factor. |
-| `RiffVoiceDelayMix(v)` | Echo wet amount. |
-| `RiffVoiceChorusDepth(v)` | Chorus intensity. |
-| `RiffVoiceChorusRate(v)` | Chorus LFO rate in Hz. |
-| `RiffVoiceFlangerDepth(v)` | Flanger intensity. |
-| `RiffVoiceFlangerRate(v)` | Flanger sweep rate in Hz. |
-| `RiffVoiceFlangerFeedback(v)` | Flanger resonance. |
-| `RiffVoiceTremoloRate(v)` | Tremolo LFO rate in Hz. |
-| `RiffVoiceTremoloDepth(v)` | Tremolo intensity. |
-| `RiffVoiceAutoPanRate(v)` | AutoPan LFO rate in Hz. |
-| `RiffVoiceAutoPanDepth(v)` | AutoPan intensity. |
-| `RiffVoiceRingModFreq(v)` | Ring modulator oscillator frequency in Hz. |
-| `RiffVoiceRingModMix(v)` | Ring modulator wet amount. |
-| `RiffVoiceCompressorThreshold(v)` | Level at which compression begins. |
-| `RiffVoiceCompressorRatio(v)` | Compression strength above the threshold. |
 
 ## Examples
 
